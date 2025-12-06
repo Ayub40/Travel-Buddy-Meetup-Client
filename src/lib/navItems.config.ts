@@ -112,6 +112,12 @@ export const adminNavItems: NavSection[] = [
                 icon: "Users",
                 roles: ["ADMIN"],
             },
+            {
+                title: "All Admins",
+                href: "/admin/dashboard/admins-management",
+                icon: "Shield",
+                roles: ["ADMIN"],
+            },
         ],
     },
     {
