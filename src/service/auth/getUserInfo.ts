@@ -34,7 +34,7 @@ export const getUserInfo = async (): Promise<UserInfo | any> => {
         }
 
         userInfo = {
-            name: result.data.admin?.name || result.data.doctor?.name || result.data.patient?.name || result.data.name || "Unknown User",
+            name: result.data.admin?.name || result.data.user?.name || result.data.name || "Unknown User",
             ...result.data
         };
 

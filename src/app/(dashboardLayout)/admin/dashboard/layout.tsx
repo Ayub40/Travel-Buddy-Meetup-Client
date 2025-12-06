@@ -1,17 +1,17 @@
 import React from "react";
 
-const UserDashboardLayout = ({
+const AdminDashboardLayout = ({
     children,
 }: {
     children: React.ReactNode;
 }) => {
     return (
         <div>
-            <h1>Hello World</h1>
+            <h1>Admin Dashboard -- Layout.tsx</h1>
             {children}
         </div>
     );
 
 };
 
-export default UserDashboardLayout;
+export default AdminDashboardLayout;
