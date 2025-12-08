@@ -18,9 +18,13 @@ const TravelPlanManagementPage = async ({
     const travelPlansResult = await getAllTravelPlans(queryString);
     // console.log(travelPlansResult);
 
+    // const totalPages = Math.ceil(
+    //     (travelPlansResult?.meta?.total || 1) /
+    //     (travelPlansResult?.meta?.limit || 1)
+    // );
+
     const totalPages = Math.ceil(
-        (travelPlansResult?.meta?.total || 1) /
-        (travelPlansResult?.meta?.limit || 1)
+        (travelPlansResult?.meta?.total || 1) / (travelPlansResult?.meta?.limit || 1)
     );
 
     return (
@@ -38,6 +42,11 @@ const TravelPlanManagementPage = async ({
                     currentPage={travelPlansResult?.meta?.page || 1}
                     totalPages={totalPages || 1}
                 />
+
+                {/* <TablePagination
+                    currentPage={travelPlansResult?.meta?.page || 1}
+                    totalPages={totalPages || 1}
+                /> */}
             </Suspense>
         </div>
     );

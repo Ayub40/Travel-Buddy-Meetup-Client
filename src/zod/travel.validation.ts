@@ -3,8 +3,8 @@ import z from "zod";
 /** Frontend enum for TravelType */
 export enum TravelType {
     SOLO = "SOLO",
-    GROUP = "GROUP",
-    BACKPACK = "BACKPACK",
+    FAMILY = "FAMILY",
+    FRIENDS = "FRIENDS",
 }
 
 /** Zod schemas for TravelPlan */
@@ -16,9 +16,9 @@ export const createTravelPlanZodSchema = z.object({
     endDate: z.string().min(1, "End date is required"),
     budget: z.number().optional(),
     description: z.string().optional(),
-    travelType: z.enum([TravelType.SOLO, TravelType.GROUP, TravelType.BACKPACK]),
+    travelType: z.enum([TravelType.SOLO, TravelType.FAMILY, TravelType.FRIENDS]),
     // photos: z.array(z.string()).optional(),
-    photos: z.array(z.instanceof(File).refine((file) => file.size > 0, "Profile photo is required")).optional(),
+    photos: z.array(z.instanceof(File).refine((file) => file.size > 0, "photo is required")).optional(),
     visibility: z.boolean().optional(),
 });
 
@@ -30,7 +30,9 @@ export const updateTravelPlanZodSchema = z.object({
     endDate: z.string().optional(),
     budget: z.number().optional(),
     description: z.string().optional(),
-    travelType: z.enum([TravelType.SOLO, TravelType.GROUP, TravelType.BACKPACK]).optional(),
-    photos: z.array(z.string()).optional(),
+    travelType: z.enum([TravelType.SOLO, TravelType.FAMILY, TravelType.FRIENDS]).optional(),
+    // photos: z.array(z.string()).optional(),
+    // photos: z.array(z.instanceof(File).refine((file) => file.size > 0, "Update photo is required")).optional(),
+    photos: z.array(z.instanceof(File)).optional(),
     visibility: z.boolean().optional(),
 });

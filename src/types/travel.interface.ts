@@ -1,7 +1,7 @@
 export enum TravelType {
     SOLO = "SOLO",
-    GROUP = "GROUP",
-    BACKPACK = "BACKPACK",
+    FAMILY = "FAMILY",
+    FRIENDS = "FRIENDS",
 }
 
 export interface ITravelPlan {

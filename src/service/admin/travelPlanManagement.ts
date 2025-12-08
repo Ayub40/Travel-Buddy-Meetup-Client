@@ -144,47 +144,140 @@ export async function createTravelPlanAdmin(_prevState: any, formData: FormData)
 }
 
 /** UPDATE TRAVEL PLAN */
-export async function updateTravelPlan(id: string, formData: FormData) {
-    const travelPlanPayload: any = {
-        title: formData.get("title")?.toString() || "",
-        destination: formData.get("destination")?.toString() || "",
-        country: formData.get("country")?.toString() || "",
-        startDate: formData.get("startDate")?.toString() || "",
-        endDate: formData.get("endDate")?.toString() || "",
+// export async function updateTravelPlanAdmin(id: string, _prevState: any, formData: FormData) {
+//     const validationPayload: any = {
+//         title: formData.get("title") as string,
+//         destination: formData.get("destination") as string,
+//         country: formData.get("country") as string,
+//         startDate: formData.get("startDate") as string,
+//         endDate: formData.get("endDate") as string,
+//         budget: formData.get("budget") ? Number(formData.get("budget")) : undefined,
+//         description: formData.get("description") as string,
+//         travelType: (formData.get("travelType") as string) || TravelType.SOLO,
+//         visibility: formData.get("visibility") === "true",
+//         photos: formData.getAll("photos") as File[],
+//     };
+
+
+//     const validation = zodValidator(validationPayload, updateTravelPlanZodSchema);
+//     if (!validation.success && validation.errors) {
+//         return {
+//             success: validation.success,
+//             message: "Validation failed",
+//             formData: validationPayload,
+//             errors: validation.errors,
+//         };
+//     }
+//     if (!validation.data) {
+//         return {
+//             success: false,
+//             message: "Validation failed",
+//             formData: validationPayload,
+//         };
+//     }
+
+//     try {
+//         const response = await serverFetch.patch(`/travel-plans/update-travelPlan/${id}`, {
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(validation.data),
+//         });
+
+//         const result = await response.json();
+//         return result;
+//     } catch (error: any) {
+//         console.error("Update admin error:", error);
+//         return {
+//             success: false,
+//             message: process.env.NODE_ENV === 'development' ? error.message : 'Failed to update admin',
+//             formData: validationPayload
+//         };
+//     }
+// }
+
+/** UPDATE TRAVEL PLAN */
+export async function updateTravelPlanAdmin(
+    id: string,
+    _prevState: any,
+    formData: FormData
+) {
+    const validationPayload = {
+        title: formData.get("title") as string,
+        destination: formData.get("destination") as string,
+        country: formData.get("country") as string,
+        startDate: formData.get("startDate") as string,
+        endDate: formData.get("endDate") as string,
         budget: formData.get("budget") ? Number(formData.get("budget")) : undefined,
-        description: formData.get("description")?.toString() || "",
-        travelType: formData.get("travelType")?.toString() || TravelType.SOLO,
-        photos: formData.getAll("photos") as File[],
+        description: formData.get("description") as string,
+        travelType: formData.get("travelType") as string,
         visibility: formData.get("visibility") === "true",
+        photos: formData.getAll("photos") as File[],
     };
 
-    const validation = zodValidator(travelPlanPayload, updateTravelPlanZodSchema);
+    // validate (optional for update)
+    const validatedPayload = zodValidator(validationPayload, updateTravelPlanZodSchema);
 
-    if (!validation.success) {
+    if (!validatedPayload.success && validatedPayload.errors) {
         return {
             success: false,
             message: "Validation failed",
-            errors: validation.errors,
-            formData: travelPlanPayload,
+            formData: validationPayload,
+            errors: validatedPayload.errors,
         };
     }
 
-    try {
-        const body = new FormData();
-        body.append("travelPlan", JSON.stringify(validation.data));
-        (travelPlanPayload.photos as File[]).forEach(file => body.append("photos", file));
+    // ✅ Backend payload
+    const backendPayload = {
+        travelPlan: {
+            title: validationPayload.title,
+            destination: validationPayload.destination,
+            country: validationPayload.country,
+            startDate: validationPayload.startDate,
+            endDate: validationPayload.endDate,
+            budget: validationPayload.budget,
+            description: validationPayload.description,
+            travelType: validationPayload.travelType,
+            visibility: validationPayload.visibility,
+        }
+    };
 
-        const response = await serverFetch.patch(`/travel-plans/${id}`, { body });
-        return await response.json();
+    const newFormData = new FormData();
+    newFormData.append("travelPlan", JSON.stringify(backendPayload.travelPlan));
+
+    // ✅ photos append
+    const photos = formData.getAll("photos") as File[];
+    // photos.forEach(photo => newFormData.append("photos", photo));
+    photos.forEach(photo => {
+        if (photo instanceof File && photo.size > 0) {
+            newFormData.append("photos", photo);
+        }
+    });
+    
+
+    try {
+        const response = await serverFetch.patch(`/travel-plans/update-travelPlan/${id}`, {
+            body: newFormData,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            revalidateTag("travel-plans-list", { expire: 0 });
+            revalidateTag("travel-plans-dashboard", { expire: 0 });
+        }
+
+        return result;
     } catch (error: any) {
         console.error("Update travel plan error:", error);
         return {
             success: false,
-            message: process.env.NODE_ENV === "development" ? error.message : "Failed to update travel plan",
-            formData: travelPlanPayload,
+            message: process.env.NODE_ENV === "development"
+                ? error.message
+                : "Failed to update travel plan",
+            formData: validationPayload,
         };
     }
 }
+
 
 /** DELETE TRAVEL PLAN (Admin view) */
 export async function deleteTravelPlan(id: string) {

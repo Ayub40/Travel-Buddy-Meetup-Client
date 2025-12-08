@@ -4,20 +4,12 @@ import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDial
 import ManagementTable from "@/components/shared/ManagementTable";
 import { deleteTravelPlan } from "@/service/admin/travelPlanManagement";
 import { ITravelPlan } from "@/types/travel.interface";
-// import {
-//     deleteTravelPlan,
-// } from "@/service/travelPlan/travelPlanManagement";
-// import { ITravelPlan } from "@/types/travelPlan.interface";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { travelPlanColumns } from "./travelsColumn";
 import TravelPlanFormDialog from "./TravelFormDialog";
 import TravelPlanViewDialog from "./TravelViewDetailDialog";
-
-// import { travelPlanColumns } from "./travelPlanColumns";
-// import TravelPlanFormDialog from "./TravelPlanFormDialog";
-// import TravelPlanViewDialog from "./TravelPlanViewDialog";
 
 interface TravelPlansTableProps {
     travelPlans: ITravelPlan[];
