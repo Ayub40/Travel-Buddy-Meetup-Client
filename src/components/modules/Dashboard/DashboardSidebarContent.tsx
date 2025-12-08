@@ -13,13 +13,13 @@ import { usePathname } from "next/navigation";
 interface DashboardSidebarContentProps {
     userInfo: UserInfo;
     navItems: NavSection[];
-    dashboardHome: string;
+    // dashboardHome: string;
 }
 
 const DashboardSidebarContent = ({
     userInfo,
     navItems,
-    dashboardHome,
+    // dashboardHome,
 }: DashboardSidebarContentProps) => {
 
     // Get the current pathname to determine active links
@@ -30,9 +30,12 @@ const DashboardSidebarContent = ({
         <div className="hidden md:flex h-full w-64 flex-col border-r bg-card">
             {/* Logo/Brand */}
             <div className="flex h-16 items-center border-b px-6">
-                <Link href={dashboardHome} className="flex items-center space-x-2">
+                <Link href="/" className="flex items-center space-x-2">
                     <span className="text-xl font-bold text-primary">TripMates Hub</span>
                 </Link>
+                {/* <Link href={dashboardHome} className="flex items-center space-x-2">
+                    <span className="text-xl font-bold text-primary">TripMates Hub</span>
+                </Link> */}
             </div>
 
             {/* Navigation */}

@@ -144,57 +144,6 @@ export async function createTravelPlanAdmin(_prevState: any, formData: FormData)
 }
 
 /** UPDATE TRAVEL PLAN */
-// export async function updateTravelPlanAdmin(id: string, _prevState: any, formData: FormData) {
-//     const validationPayload: any = {
-//         title: formData.get("title") as string,
-//         destination: formData.get("destination") as string,
-//         country: formData.get("country") as string,
-//         startDate: formData.get("startDate") as string,
-//         endDate: formData.get("endDate") as string,
-//         budget: formData.get("budget") ? Number(formData.get("budget")) : undefined,
-//         description: formData.get("description") as string,
-//         travelType: (formData.get("travelType") as string) || TravelType.SOLO,
-//         visibility: formData.get("visibility") === "true",
-//         photos: formData.getAll("photos") as File[],
-//     };
-
-
-//     const validation = zodValidator(validationPayload, updateTravelPlanZodSchema);
-//     if (!validation.success && validation.errors) {
-//         return {
-//             success: validation.success,
-//             message: "Validation failed",
-//             formData: validationPayload,
-//             errors: validation.errors,
-//         };
-//     }
-//     if (!validation.data) {
-//         return {
-//             success: false,
-//             message: "Validation failed",
-//             formData: validationPayload,
-//         };
-//     }
-
-//     try {
-//         const response = await serverFetch.patch(`/travel-plans/update-travelPlan/${id}`, {
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify(validation.data),
-//         });
-
-//         const result = await response.json();
-//         return result;
-//     } catch (error: any) {
-//         console.error("Update admin error:", error);
-//         return {
-//             success: false,
-//             message: process.env.NODE_ENV === 'development' ? error.message : 'Failed to update admin',
-//             formData: validationPayload
-//         };
-//     }
-// }
-
-/** UPDATE TRAVEL PLAN */
 export async function updateTravelPlanAdmin(
     id: string,
     _prevState: any,
@@ -251,7 +200,7 @@ export async function updateTravelPlanAdmin(
             newFormData.append("photos", photo);
         }
     });
-    
+
 
     try {
         const response = await serverFetch.patch(`/travel-plans/update-travelPlan/${id}`, {
