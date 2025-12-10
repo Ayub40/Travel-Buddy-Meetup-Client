@@ -257,10 +257,26 @@ export async function matchTravelPlans(queryString?: string) {
 }
 
 // For Login User Get Travel Plan
-export async function getMyTravelPlans() {
+// export async function getMyTravelPlans() {
+//     try {
+//         const response = await serverFetch.get("/travel-plans/my-travel-plan");
+//         return await response.json();
+//     } catch (error: any) {
+//         console.error("Get my travel plans error:", error);
+//         return {
+//             success: false,
+//             message: process.env.NODE_ENV === "development" ? error.message : "Failed to fetch your travel plans",
+//             data: [],
+//         };
+//     }
+// }
+
+export async function getMyTravelPlans(queryString?: string) {
     try {
-        const response = await serverFetch.get("/travel-plans/my-travel-plan");
-        return await response.json();
+        const response = await serverFetch.get(`/travel-plans/my-travel-plan${queryString ? `?${queryString}` : ""}`);
+        // return await response.json();
+        const result = await response.json();
+        return result
     } catch (error: any) {
         console.error("Get my travel plans error:", error);
         return {
@@ -270,3 +286,17 @@ export async function getMyTravelPlans() {
         };
     }
 }
+
+// export async function getAdmins(queryString?: string) {
+//     try {
+//         const response = await serverFetch.get(`/admin${queryString ? `?${queryString}` : ""}`);
+//         const result = await response.json();
+//         return result;
+//     } catch (error: any) {
+//         console.log(error);
+//         return {
+//             success: false,
+//             message: `${process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'}`
+//         };
+//     }
+// }

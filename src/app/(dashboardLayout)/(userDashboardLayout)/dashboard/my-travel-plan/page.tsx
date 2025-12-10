@@ -3,9 +3,22 @@ import TravelPlansTable from "@/components/modules/Admin/TravelManagement/Travel
 import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { Suspense } from "react";
 import TravelPlanManagementHeader from "@/components/modules/Admin/TravelManagement/TravelsManagementHeader";
+import TablePagination from "@/components/shared/TablePagination";
+import { queryStringFormatter } from "@/lib/formatters";
 
-const MyTravelPlansPage = async () => {
-    const travelPlansResult = await getMyTravelPlans();
+
+const MyTravelPlansPage = async ({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) => {
+    const searchParamsObj = await searchParams;
+    const queryString = queryStringFormatter(searchParamsObj);
+    const travelPlansResult = await getMyTravelPlans(queryString);
+
+    const totalPages = Math.ceil(
+        (travelPlansResult?.meta?.total || 1) / (travelPlansResult?.meta?.limit || 1)
+    );
 
     return (
         <div className="space-y-6">
@@ -14,27 +27,13 @@ const MyTravelPlansPage = async () => {
 
             <Suspense fallback={<TableSkeleton columns={7} rows={5} />}>
                 <TravelPlansTable travelPlans={travelPlansResult?.data || []} />
+                <TablePagination
+                    currentPage={travelPlansResult?.meta?.page || 1}
+                    totalPages={totalPages || 1}
+                />
             </Suspense>
         </div>
     );
 };
 
 export default MyTravelPlansPage;
-
-
-// <div className="space-y-6">
-//     {/* Header */}
-//     <TravelPlanManagementHeader />
-
-//     {/* Filters */}
-//     <TravelPlansFilter />
-
-//     {/* Table + Pagination */}
-//     <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
-//         <TravelPlansTable travelPlans={travelPlansResult?.data || []} />
-//         <TablePagination
-//             currentPage={travelPlansResult?.meta?.page || 1}
-//             totalPages={totalPages || 1}
-//         />
-//     </Suspense>
-// </div>
