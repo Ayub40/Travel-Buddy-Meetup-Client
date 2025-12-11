@@ -8,14 +8,20 @@ import { IReview, IReviewCreate } from "@/types/review.interface";
 /* -----------------------------------------
    ✅ 1) Get Reviews of a Travel Plan
 ------------------------------------------ */
-export async function getReviewsByPlan(travelPlanId: string) {
+// reviews.service.ts
+export async function getReviewsByPlan(travelPlanId: string, userEmail?: string) {
     try {
         const response = await serverFetch.get(`/reviews/plan/${travelPlanId}`);
         const result = await response.json();
 
+        const reviewsWithOwnership = (result.data || []).map((r: any) => ({
+            ...r,
+            isOwn: r.user.email === userEmail,
+        }));
+
         return {
             success: true,
-            data: result.data,
+            data: reviewsWithOwnership,
             meta: result.meta,
         };
     } catch (error: any) {
@@ -27,6 +33,27 @@ export async function getReviewsByPlan(travelPlanId: string) {
         };
     }
 }
+
+
+// export async function getReviewsByPlan(travelPlanId: string) {
+//     try {
+//         const response = await serverFetch.get(`/reviews/plan/${travelPlanId}`);
+//         const result = await response.json();
+
+//         return {
+//             success: true,
+//             data: result.data,
+//             meta: result.meta,
+//         };
+//     } catch (error: any) {
+//         console.error("Get reviews error:", error);
+//         return {
+//             success: false,
+//             message: error.message || "Failed to fetch reviews",
+//             data: null,
+//         };
+//     }
+// }
 
 /* -----------------------------------------
    ✅ 2) Get My Reviews
@@ -104,7 +131,7 @@ export async function updateReview(reviewId: string, data: Partial<IReview>) {
 ------------------------------------------ */
 export async function deleteReview(reviewId: string) {
     try {
-        const response = await serverFetch.delete(`/review/${reviewId}`);
+        const response = await serverFetch.delete(`/reviews/${reviewId}`);
         return await response.json();
     } catch (error: any) {
         console.error("Error deleting review:", error);

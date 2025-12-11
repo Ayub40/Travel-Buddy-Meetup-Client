@@ -94,11 +94,6 @@ const TravelPlanDetailsPage = async ({ params }: any) => {
                 )}
             </div>
             <TravelPlanReview travelPlanId={plan.id} tripEnded={tripEnded} />
-            {/* Review Form */}
-            {/* <div className="mt-10 p-6 border rounded-xl shadow-sm bg-white">
-                <h2 className="text-2xl font-semibold mb-4">Write a Review</h2>
-                <ReviewForm travelPlanId={plan.id} onSuccess={() => window.location.reload()} />
-            </div> */}
         </div>
     );
 };

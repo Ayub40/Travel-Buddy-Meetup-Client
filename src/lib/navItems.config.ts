@@ -79,7 +79,7 @@ export const userNavItems: NavSection[] = [
         items: [
             {
                 title: "My Reviews",
-                href: "/dashboard/reviews",
+                href: "/dashboard/my-reviews",
                 icon: "Star",
                 roles: ["USER"],
             },
