@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 interface DashboardSidebarContentProps {
     userInfo: UserInfo;
     navItems: NavSection[];
-    // dashboardHome: string;
+    dashboardHome: string;
 }
 
 const DashboardSidebarContent = ({

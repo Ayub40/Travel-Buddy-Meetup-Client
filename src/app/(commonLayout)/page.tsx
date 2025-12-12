@@ -1,10 +1,3 @@
-// import { Hero } from "@/components/modules/Home/Hero";
-// import TopDestinations from "@/components/modules/Home/TopDestinations";
-// import HowItWorks from "@/components/modules/Home/HowItWorks";
-// import FeaturedTravelers from "@/components/modules/Home/FeaturedTravelers";
-// import ExploreCategories from "@/components/modules/Home/ExploreCategories";
-// import Testimonials from "@/components/modules/Home/Testimonials";
-
 import Hero from "@/components/modules/Home/Hero";
 import Steps from "@/components/modules/Home/Steps";
 import Head from "next/head";
