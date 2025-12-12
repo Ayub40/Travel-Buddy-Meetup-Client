@@ -1,5 +1,6 @@
 "use server";
 
+
 // export const dynamic = "force-dynamic";
 
 import Link from "next/link";
@@ -28,7 +29,7 @@ const PublicNavbar = async () => {
     { href: "/", label: "Home" },
     { href: "/allTravelPlan", label: "Explore Travelers" },
     { href: "/dashboard/my-travel-plan", label: "My Travel Plans" },
-    { href: "/my-profile", label: "Profile" },
+    // { href: "/dashboard/my-profile", label: "Profile" },
   ];
 
   // ADMIN Logged In
@@ -80,7 +81,7 @@ const PublicNavbar = async () => {
           ) : (
             <>
               {role === "USER" && (
-                <Link href="/pricing-page">
+                <Link href="/dashboard/pricing-page">
                   <Button variant="outline">Upgrade Plan</Button>
                 </Link>
               )}

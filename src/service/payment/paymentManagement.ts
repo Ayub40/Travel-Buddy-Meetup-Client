@@ -26,8 +26,8 @@ export const createCheckoutSession = async () => {
         ],
         // success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/pricing-success`,
         // cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/pricing`,
-        success_url: "http://localhost:3000/pricing-success",
-        cancel_url: "http://localhost:3000/dashboard/pricing-page",
+        success_url: "https://travel-buddy-meetup-4028.vercel.app/pricing-success",
+        cancel_url: "https://travel-buddy-meetup-4028.vercel.app/pricing-page",
         metadata: {
             userId: user.id,
             paymentFor: "subscription",

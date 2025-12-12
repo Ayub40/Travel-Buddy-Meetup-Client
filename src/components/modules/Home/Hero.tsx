@@ -18,7 +18,7 @@ export default function Hero() {
       />
 
       <div className="relative mx-auto max-w-[1200px] px-6 py-16 lg:py-28">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
+        {/* <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center"> */}
           {/* LEFT SECTION */}
           <div className="space-y-6">
             {/* Badge */}
@@ -62,12 +62,12 @@ export default function Hero() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="flex gap-4"
             >
-              <Button className="px-8 py-6 rounded-xl text-base bg-blue-600 hover:bg-blue-700">
+              {/* <Button className="px-8 py-6 rounded-xl text-base bg-blue-600 hover:bg-blue-700">
                 Get Started
               </Button>
               <Button variant="outline" className="px-8 py-6 rounded-xl text-base">
                 Learn More
-              </Button>
+              </Button> */}
             </motion.div>
 
             {/* Stats */}
@@ -92,7 +92,7 @@ export default function Hero() {
           </div>
 
           {/* RIGHT FORM */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
@@ -103,19 +103,19 @@ export default function Hero() {
             </h2>
 
             <form className="space-y-5">
-              {/* Destination */}
+          
               <div className="space-y-2">
                 <Label>Destination</Label>
                 <Input placeholder="e.g., Cox's Bazar, Sylhet, Nepal" />
               </div>
 
-              {/* Date */}
+         
               <div className="space-y-2">
                 <Label>Travel Date</Label>
                 <Input type="date" />
               </div>
 
-              {/* Travel type */}
+            
               <div className="space-y-2">
                 <Label>Who are you traveling with?</Label>
                 <Input placeholder="Solo / Friends / Family" />
@@ -126,8 +126,8 @@ export default function Hero() {
                 Find Buddy
               </Button>
             </form>
-          </motion.div>
-        </div>
+          </motion.div> */}
+        {/* </div> */}
       </div>
     </div>
   );
