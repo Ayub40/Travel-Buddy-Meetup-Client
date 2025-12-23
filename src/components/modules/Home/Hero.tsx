@@ -1,134 +1,146 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, MapPin, Users } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 export default function Hero() {
   return (
-    <div className="relative w-full bg-linear-to-b from-blue-50 to-white container mx-auto mt-0.5 rounded">
+    <section className="relative w-full bg-gradient-to-b from-blue-50 to-white overflow-hidden container mx-auto rounded-3xl border border-gray-100 shadow-sm mt-4">
       {/* Background Decoration */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.25 }}
+        animate={{ opacity: 0.2 }}
         transition={{ duration: 1.5 }}
         className="absolute inset-0 bg-[url('/travel-bg.svg')] bg-cover bg-center"
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-6 py-16 lg:py-28">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
-          {/* LEFT SECTION */}
-          <div className="space-y-6">
-            {/* Badge */}
+      <div className="relative mx-auto px-6 lg:px-12 z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between py-12 lg:py-20 gap-8">
+          <div className="w-full lg:w-[45%] space-y-8">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-white border px-4 py-2 rounded-full shadow-sm"
+              className="inline-flex items-center gap-2 bg-white border border-blue-100 px-4 py-2 rounded-full shadow-sm"
             >
               <MapPin className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-600">
-                Travel Buddy Platform
+              <span className="text-sm font-semibold text-blue-600 tracking-wide uppercase">
+                TripMates Hub Platform
               </span>
             </motion.div>
 
-            {/* Heading */}
             <motion.h1
-              initial={{ y: 40, opacity: 0 }}
+              initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold leading-tight text-gray-800"
+              className="text-5xl lg:text-7xl font-extrabold leading-[1.1] text-gray-900"
             >
-              Find Your Perfect <br />
-              Travel Partner & Explore The World Together
+              Find Your Next <br />
+              <span className="text-blue-600 italic">Travel Partner</span>
             </motion.h1>
 
-            {/* Description */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-gray-600 text-lg"
+              className="text-gray-500 text-xl leading-relaxed max-w-lg"
             >
-              Connect with people traveling to the same destination, plan together, and enjoy a safe travel experience.
+              Transform your solo journeys into shared adventures. Connect with verified travelers heading to your dream destination.
             </motion.p>
 
-            {/* Buttons */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex gap-4"
+              className="flex flex-wrap gap-4"
             >
-              {/* <Button className="px-8 py-6 rounded-xl text-base bg-blue-600 hover:bg-blue-700">
-                Get Started
+              <Button size="lg" className="rounded-full px-8 py-7 text-lg bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-200 group transition-all">
+                Find Buddy <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" className="px-8 py-6 rounded-xl text-base">
-                Learn More
-              </Button> */}
+              <Button size="lg" variant="outline" className="rounded-full px-8 py-7 text-lg border-2 hover:bg-blue-50">
+                How It Works
+              </Button>
             </motion.div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
+
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
               {[
-                { value: "10K+", label: "Travelers Joined" },
-                { value: "1500+", label: "Successful Trips" },
-                { value: "4.8", label: "Average Rating" },
+                { value: "10K+", label: "Travelers" },
+                { value: "1.5K+", label: "Trips" },
+                { value: "4.8", label: "Rating" },
               ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 * i }}
-                  className="space-y-1"
-                >
-                  <p className="text-2xl font-semibold text-gray-800">{stat.value}</p>
-                  <p className="text-sm text-gray-500">{stat.label}</p>
+                <motion.div key={i} className="text-left">
+                  <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+                  <p className="text-xs text-gray-400 uppercase font-bold tracking-widest">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT FORM */}
+
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="rounded-2xl bg-white p-8 shadow-xl border"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-[55%] relative flex justify-center lg:justify-end"
           >
-            <h2 className="text-xl font-semibold text-gray-800 mb-6">
-              Search Travel Buddy
-            </h2>
 
-            <form className="space-y-5">
+            <div className="absolute -inset-10 bg-blue-400/10 rounded-full blur-3xl" />
 
-              <div className="space-y-2">
-                <Label>Destination</Label>
-                <Input placeholder="e.g., Cox's Bazar, Sylhet, Nepal" />
-              </div>
-
-
-              <div className="space-y-2">
-                <Label>Travel Date</Label>
-                <Input type="date" />
-              </div>
+            <div className="relative group overflow-visible w-full max-w-[600px]">
+              <Image
+                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+                alt="Travel Partner Adventure"
+                width={800} 
+                height={900} 
+                className="relative rounded-[3.5rem] shadow-2xl h-[500px] lg:h-[650px] w-full object-cover border-[10px] border-white transition-transform duration-500 group-hover:scale-[1.01]"
+                priority
+              />
 
 
-              <div className="space-y-2">
-                <Label>Who are you traveling with?</Label>
-                <Input placeholder="Solo / Friends / Family" />
-              </div>
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="absolute top-10 -left-4 lg:-left-8 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-xl flex items-center gap-4 border border-white/50 z-20"
+              >
+                <div className="relative w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-ping absolute" />
+                  <div className="w-3 h-3 bg-green-500 rounded-full relative" />
+                </div>
+                <div>
+                  <p className="text-base font-extrabold text-gray-800">128 Travelers</p>
+                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Active Now</p>
+                </div>
+              </motion.div>
 
-              <Button className="w-full py-6 text-base bg-blue-600 hover:bg-blue-700">
-                <Search className="w-5 h-5 mr-2" />
-                Find Buddy
-              </Button>
-            </form>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
+                className="absolute bottom-10 -right-4 lg:-right-8 bg-white/95 backdrop-blur-md p-6 rounded-[2.5rem] shadow-xl border border-white/50 z-20"
+              >
+                <p className="text-sm font-bold text-gray-800 mb-4 uppercase tracking-wider">Join Group Trip</p>
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <div key={i} className="w-11 h-11 rounded-full border-[3px] border-white overflow-hidden shadow-sm">
+                      <Image alt="Active User" width={44} height={44} className="object-cover"
+                        src={`https://i.pravatar.cc/150?u=${i + 30}`} />
+                    </div>
+                  ))}
+                  <div className="w-11 h-11 rounded-full bg-blue-600 flex items-center justify-center text-xs text-white border-[3px] border-white font-bold">
+                    +12
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 }
+
+

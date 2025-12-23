@@ -7,6 +7,7 @@ import Statistics from "@/components/modules/Home/Statistics";
 import Steps from "@/components/modules/Home/Steps";
 import Testimonials from "@/components/modules/Home/Testimonials";
 import TrendingDestinations from "@/components/modules/Home/TrendingDestinations";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 import Head from "next/head";
 
 export default function Home() {
@@ -34,21 +35,7 @@ export default function Home() {
         <Newsletter />
 
 
-
-        {/* Popular Destinations */}
-        {/* <TopDestinations /> */}
-
-        {/* How It Works */}
-        {/* <HowItWorks /> */}
-
-        {/* Featured Travelers */}
-        {/* <FeaturedTravelers /> */}
-
-        {/* Travel Categories */}
-        {/* <ExploreCategories /> */}
-
-        {/* Testimonials */}
-        {/* <Testimonials /> */}
+        <ScrollToTop />
       </main>
     </>
   );
