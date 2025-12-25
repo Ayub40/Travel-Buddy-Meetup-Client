@@ -74,7 +74,7 @@ const PublicNavbar = async () => {
             <Link 
               key={item.label} 
               href={item.href} 
-              className="px-3 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-blue-600 hover:bg-blue-50/50 transition-all"
+              className="px-3 py-2 rounded text-gray-700 dark:text-gray-200 hover:text-blue-600 hover:bg-blue-50/50 transition-all"
             >
               {item.label}
             </Link>
@@ -103,10 +103,10 @@ const PublicNavbar = async () => {
           {!isLoggedIn ? (
             <>
               <Link href="/login">
-                <Button variant="ghost" className="rounded-full">Login</Button>
+                <Button className="rounded bg-blue-600 hover:bg-blue-700">Login</Button>
               </Link>
               <Link href="/register">
-                <Button className="rounded-full bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-200">Register</Button>
+                <Button className="rounded bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-200">Register</Button>
               </Link>
             </>
           ) : (
