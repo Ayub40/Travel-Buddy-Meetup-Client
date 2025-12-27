@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion } from "framer-motion";
@@ -42,7 +43,7 @@ export default function Hero({ statsResponse }: { statsResponse: any }) {
 
 
   return (
-    <section className="relative w-full bg-linear-to-b from-blue-50 to-white overflow-hidden container mx-auto rounded-3xl border border-gray-100 shadow-sm mt-4">
+    <section className="relative w-full bg-linear-to-b from-blue-50 to-white overflow-hidden container mx-auto rounded-lg border border-gray-100 shadow-sm mt-4">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
