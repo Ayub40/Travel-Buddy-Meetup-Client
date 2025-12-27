@@ -10,9 +10,13 @@ import Steps from "@/components/modules/Home/Steps";
 import Testimonials from "@/components/modules/Home/Testimonials";
 // import TrendingDestinations from "@/components/modules/Home/TrendingDestinations";
 import ScrollToTop from "@/components/shared/ScrollToTop";
+import { getAppStatistics } from "@/service/dashboard/dashboardManagement";
 import Head from "next/head";
 
-export default function Home() {
+export default async function Home() {
+  // const statsResult = await getAppStatistics();
+  const statsData = await getAppStatistics();
+
   return (
     <>
       <Head>
@@ -27,7 +31,8 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <Hero />
+        {/* <Hero statsResponse={statsResult} /> */}
+        <Hero statsResponse={statsData} />
         <Statistics />
         <Steps />
         {/* <TrendingDestinations /> */}

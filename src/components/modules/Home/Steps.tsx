@@ -62,7 +62,7 @@ const StepCard = ({
 
 const Steps = () => {
   return (
-    <section className="py-12 container mx-auto overflow-hidden">
+    <section id="how-it-works" className="py-12 container mx-auto overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Title Section with Animation */}
