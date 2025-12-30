@@ -30,7 +30,7 @@ export async function getAdminAllStats() {
     const response = await serverFetch.get("/admin/admin-stats");
 
 
-    console.log("Response Status:", response.status);
+    // console.log("Response Status:", response.status);
 
     if (!response.ok) {
       const errorData = await response.json();

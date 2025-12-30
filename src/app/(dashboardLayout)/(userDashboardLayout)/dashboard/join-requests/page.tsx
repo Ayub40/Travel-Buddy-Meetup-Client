@@ -62,7 +62,7 @@ export default function JoinRequestsPage() {
     };
 
     const handleUserClick = (userId: string) => {
-        console.log("Navigating to user profile:", userId);
+        // console.log("Navigating to user profile:", userId);
 
     };
 
