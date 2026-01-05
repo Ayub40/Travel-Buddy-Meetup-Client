@@ -34,7 +34,7 @@ export default function AboutPage() {
     return (
         <div className="bg-white min-h-screen">
 
-            {/* 1. Hero Section - Project Overview */}
+
             <section className="py-24 container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     <motion.div
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 2. Core Objectives - Features Based */}
+
             <section className="py-24 bg-gray-50">
                 <div className="container mx-auto px-6 text-center mb-16">
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">Our Core Objectives</h2>
@@ -112,14 +112,12 @@ export default function AboutPage() {
                                 <v.icon className={v.iconColor} size={32} />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-800 mb-4">{v.title}</h3>
-                            {/* <p className="text-gray-600 leading-relaxed italic">"{v.desc}"</p> */}
                             <p className="text-gray-600 leading-relaxed italic">{`"${v.desc}"`}</p>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* 3. The Platform Strategy - Review & Payment */}
             <section className="py-24 container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <motion.div

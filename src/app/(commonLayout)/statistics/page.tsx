@@ -1,5 +1,3 @@
-// app/dashboard/page.tsx
-
 import Statistics from "@/components/modules/Home/Statistics/Statistics";
 
 

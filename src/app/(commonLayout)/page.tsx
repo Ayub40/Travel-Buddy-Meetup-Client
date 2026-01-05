@@ -1,14 +1,11 @@
-// import FeaturedTravelBuddies from "@/components/modules/Home/FeaturedTravelBuddies";
 import FAQ from "@/components/modules/Home/FAQ";
 import FeaturedTravelBuddies from "@/components/modules/Home/FeaturedTravelBuddies";
 import Hero from "@/components/modules/Home/Hero";
-// import Newsletter from "@/components/modules/Home/Newsletter";
 import PopularDestinations from "@/components/modules/Home/PopularDestinations";
 import SafetySection from "@/components/modules/Home/SafetySection";
 import Statistics from "@/components/modules/Home/Statistics/Statistics";
 import Steps from "@/components/modules/Home/Steps";
 import Testimonials from "@/components/modules/Home/Testimonials";
-// import TrendingDestinations from "@/components/modules/Home/TrendingDestinations";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 import { getAppStatistics } from "@/service/dashboard/dashboardManagement";
 import Head from "next/head";
@@ -30,19 +27,14 @@ export default async function Home() {
       </Head>
 
       <main>
-        {/* Hero Section */}
-        {/* <Hero statsResponse={statsResult} /> */}
         <Hero statsResponse={statsData} />
         <Statistics />
         <Steps />
-        {/* <TrendingDestinations /> */}
         <PopularDestinations />
         <FeaturedTravelBuddies />
         <SafetySection />
         <FAQ />
         <Testimonials />
-        {/* <Newsletter /> */}
-
 
         <ScrollToTop />
       </main>

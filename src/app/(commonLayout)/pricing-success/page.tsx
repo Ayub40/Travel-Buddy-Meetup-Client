@@ -1,6 +1,3 @@
-// "use client";
-// export const dynamic = "force-dynamic";
-
 export default function PricingSuccessPage() {
     return (
         <div className="container py-10 mx-auto">
